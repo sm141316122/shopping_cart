@@ -1,0 +1,53 @@
+{% include "header.html" %}
+
+    <div class="container" style="width:45%;">
+        <div class="card">
+            <h5 class="card-header">購物車</h5>
+            <div class="card-body row">
+                <div class="col-5">
+                    <p>商品名稱</p>
+                </div>
+                <div class="col-1">
+                    <p>數量</p>
+                </div>
+                <div class="col-1">
+                    <p>單價</p>
+                </div>
+                <div class="col-2">
+                    <p>小計</p>
+                </div>
+                <div class="col-2">
+                    <p>可買量</p>
+                </div>
+                {% for info in cart_data %}
+                    <hr>
+                    <div class="col-5">
+                        <p>{{ info["product_name"] }}</p>
+                    </div>
+                    <div class="col-1">
+                        <p>{{ info["order_num"] }}</p>
+                    </div>
+                    <div class="col-1">
+                        <p>{{ info["product_price"] }}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>NT$ {{ info["order_num"] *  info["product_price"]}}</p>
+                    </div>
+                    <div class="col-1">
+                        {% if info["product_stock"] > 9 %}
+                            <p>足夠</p>
+                        {% else %}
+                            <p>{{ info["product_stock"] }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-sm btn-secondary" type="button" onclick="location.href='{{ url_for('delete_order', product_id=info['product_id']) }}'">刪除</button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <br>
+        <div class="text-end">
+            <h4>總金額 NT$ {{ total_price }}</h4>
+        </div>
+    </div>

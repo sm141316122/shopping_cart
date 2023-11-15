@@ -1,0 +1,65 @@
+{% include "header.html" %}
+
+    <div class="container">
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <img src="{{ url_for('static', filename=product['product_img_path']) }}" width="600">
+                    </div>
+                    <div class="col" style="margin-top: 3em;">
+                        <h3><strong>{{ product['product_name'] }}</strong></h3>
+                        <hr>
+                        <div class="card" style="width: 100%">
+                            <div class="card-header">
+                                <h2>NT$ {{ product['product_price'] }}</h2>
+                            </div>
+                        </div>
+                        <br><br><br><br>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <form action="{{ url_for('product_page', product_id=product['product_id']) }}" method="post" >
+                                <select name="num" class="form-select" aria-label="Default select example" style="width:30%;">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select><br>
+
+                                {% if "login" in session %}
+                                    <button class="btn btn-outline-danger me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">加入購物車</button>
+                                    <button class="btn btn-danger" type="submit" name="buy" value="">立即購買</button>
+                                {% else %}
+                                    <button class="btn btn-outline-danger me-md-2" type="button" onclick="location.href='{{ url_for('login') }}'">加入購物車</button>
+                                    <button class="btn btn-danger" type="button" onclick="location.href='{{ url_for('login') }}'">立即購買</button>
+                                {% endif %}
+
+                                <!-- 加入購物車跳出視窗 -->
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center">
+                                                <br><br><br>
+                                                <h3>已加入購物車!</h3>
+                                                <br><br>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-secondary">確認</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

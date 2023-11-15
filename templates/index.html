@@ -1,0 +1,22 @@
+{% include "header.html" %}
+
+    <div class="container" style="margin-top: 1em;">
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="{{ url_for('static', filename='img/carousel_img/ball-1.png') }}" class="d-block w-100" alt="basketball">
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="{{ url_for('static', filename='img/carousel_img/ball-2.png') }}" class="d-block w-100" alt="football">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>

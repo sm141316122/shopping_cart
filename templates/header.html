@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>SportBall</title>
+    <style>
+        .back-to-top{position:fixed;right:30px; bottom:10%;}
+        .box{
+            position: relative;
+        }
+         .search-btn{
+            border: none;
+            display: inline-block;
+            position: absolute;
+            top: 0%;
+            left: 165px;
+            z-index: 2;
+         }
+    </style>
+</head>
+<body>
+<!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1caab09991.js" crossorigin="anonymous"></script>
+
+    <div class="container" style="margin-top:2em;">
+
+        <nav class="navbar navbar-expand-lg rounded" aria-label="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('home') }}" style="font-size:2.5em;">SportBall</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarIndex" aria-controls="navbarIndex" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-md-center" id="navbarIndex">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('category', category_id=1) }}">Basketball</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('category', category_id=2) }}">Soccer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('category', category_id=3) }}">Tennis ball</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <form action="{{ url_for('search') }}" method="post">
+                        <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search" required>
+                        <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                </div>
+
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        {% if "login" in session %}
+                            <a class="nav-link" href="{{ url_for('cart_page') }}">購物車 {{ session["cart_num"] }}</a>
+                        {% else %}
+                            <a class="nav-link" href="{{ url_for('login') }}">購物車</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if "login" in session %}
+                            <a class="nav-link" href="{{ url_for('logout') }}">登出</a>
+                        {% else %}
+                            <a class="nav-link" href="{{ url_for('login') }}">登入 | 註冊</a>
+                        {% endif %}
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    <header class="bs-docs-nav navbar navbar-static-top" id="top"></header>
+    <button class="btn btn-secondary back-to-top" type="button" onclick="location.href='#top'">Back to top</button>
+

@@ -1,0 +1,22 @@
+{% include "header.html" %}
+
+    <div class="container">
+        <img src="{{ url_for('static', filename=file) }}" width="100%">
+        <div class="container" style="margin-top: 2em;">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-4  text-center">
+                        <a href="{{ url_for('product_page', product_id=product['product_id']) }}">
+                            <figure class="figure">
+                                <img src="{{ url_for('static', filename=product['product_img_path']) }}" class="figure-img rounded" alt="..." width="300">
+                            <figcaption class="figure-caption">
+                                <p>{{ product["product_name"] }}</p>
+                                <p>NT$ {{ product["product_price"] }}</p>
+                            </figcaption></figure>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
